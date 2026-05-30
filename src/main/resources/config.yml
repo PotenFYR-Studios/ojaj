@@ -1,67 +1,306 @@
+# =========================================================
+#                 OneJumpAllJump Configuration
+# =========================================================
 #
-# OneJumpAllJump Configuration
+# Plugin by PotenFYR Studios
 #
+# When one player jumps, everyone jumps.
+# Includes synchronized particles, sounds, titles,
+# broadcasts, random launch strengths and more.
+#
+# =========================================================
 
+#
+# Master plugin toggle
+#
+# If false:
+# - plugin completely disables itself
+# - no jumps trigger globally
+#
 enabled: true
 
 #
-# Anti-spam cooldown
+# =========================================================
+#                       Cooldown
+# =========================================================
 #
-cooldown-seconds: 2
+# Prevents players from repeatedly triggering
+# server-wide jumps too quickly.
+#
+cooldown:
+
+  #
+  # Cooldown duration in seconds
+  #
+  seconds: 2
 
 #
-# Jump strength
+# =========================================================
+#                       Velocity
+# =========================================================
+#
+# Controls jump power applied to players.
 #
 velocity:
+
+  #
+  # Default vertical velocity
+  #
+  # Vanilla jump ≈ 0.42
+  #
   y: 0.42
 
+  #
+  # Random velocity mode
+  #
+  # If enabled:
+  # - each jump uses random velocity
+  # - creates more chaotic gameplay
+  #
+  random:
+
+    enabled: true
+
+    #
+    # Minimum random jump strength
+    #
+    min: 0.35
+
+    #
+    # Maximum random jump strength
+    #
+    max: 1.10
+
 #
-# Main jump particles
+# =========================================================
+#                   Trigger Chance
+# =========================================================
+#
+# Adds probability-based triggering.
+#
+# Example:
+# chance: 50
+#
+# = 50% chance global jump occurs
+#
+trigger-chance:
+
+  enabled: false
+
+  #
+  # Chance percentage (1-100)
+  #
+  chance: 100
+
+#
+# =========================================================
+#                   Fall Damage
+# =========================================================
+#
+# Prevent players from taking damage
+# from plugin-generated launches.
+#
+fall-damage:
+
+  #
+  # If true:
+  # - plugin-generated fall damage cancelled
+  #
+  # If false:
+  # - normal vanilla fall damage applies
+  #
+  cancel: true
+
+#
+# =========================================================
+#                       Particles
+# =========================================================
+#
+# Main jump particle effect.
 #
 particles:
+
   enabled: true
-  type: END_ROD
+
+  #
+  # Minecraft particle ID
+  #
+  # Examples:
+  # - end_rod
+  # - flame
+  # - cloud
+  # - explosion
+  #
+  type: end_rod
+
+  #
+  # Number of particles
+  #
   amount: 25
 
 #
-# Particle trail effect
+# =========================================================
+#                    Particle Trails
+# =========================================================
+#
+# Creates a temporary particle trail
+# behind launched players.
 #
 trail:
+
   enabled: true
-  particle: HAPPY_VILLAGER
-  duration-ticks: 10
+
+  #
+  # Trail particle type
+  #
+  particle: happy_villager
+
+  #
+  # Particles spawned every tick
+  #
   amount: 5
 
+  #
+  # Trail duration in ticks
+  #
+  # 20 ticks = 1 second
+  #
+  duration-ticks: 10
+
 #
-# Sound effect
+# =========================================================
+#                        Sounds
+# =========================================================
+#
+# Synchronized sound effect played
+# for all players during jump.
 #
 sound:
+
   enabled: true
-  type: ENTITY_FIREWORK_ROCKET_LAUNCH
+
+  #
+  # Minecraft sound ID
+  #
+  # Examples:
+  # - entity_firework_rocket_launch
+  # - entity_goat_screaming_horn_break
+  # - entity_generic_explode
+  #
+  type: entity_firework_rocket_launch
+
+  #
+  # Sound volume
+  #
   volume: 1.0
+
+  #
+  # Sound pitch
+  #
   pitch: 1.2
 
 #
-# Action bar message
+# =========================================================
+#                     Action Bar
+# =========================================================
+#
+# Message displayed above player's hotbar.
 #
 actionbar:
+
   enabled: true
-  message: "&e%player% made everyone jump!"
+
+  #
+  # Supported placeholders:
+  # - %player%
+  #
+  message: '&e%player% made everybody jump!'
 
 #
-# Messages
+# =========================================================
+#                         Titles
+# =========================================================
 #
-messages:
-  plugin-disabled: "&cPlugin is disabled."
-  no-permission: "&cYou do not have permission."
-  enabled: "&aPlugin enabled."
-  disabled: "&cPlugin disabled."
-  reloaded: "&aConfiguration reloaded."
+# Fullscreen title/subtitle effects.
+#
+titles:
+
+  enabled: true
+
+  #
+  # Main title
+  #
+  title: '&6GLOBAL JUMP'
+
+  #
+  # Subtitle
+  #
+  subtitle: '&eTriggered by %player%'
+
+  #
+  # Title fade-in duration
+  #
+  fadein: 5
+
+  #
+  # Time title remains visible
+  #
+  stay: 30
+
+  #
+  # Fade-out duration
+  #
+  fadeout: 10
 
 #
-# World whitelist
+# =========================================================
+#                      Broadcasts
+# =========================================================
+#
+# Global chat broadcast.
+#
+broadcast:
+
+  enabled: true
+
+  #
+  # Supported placeholders:
+  # - %player%
+  #
+  message: '&e%player% triggered a global jump!'
+
+#
+# =========================================================
+#                        Worlds
+# =========================================================
+#
+# Controls where plugin works.
 #
 worlds:
-  whitelist:
+
+  #
+  # Modes:
+  #
+  # whitelist:
+  # - plugin ONLY works in listed worlds
+  #
+  # blacklist:
+  # - plugin works everywhere EXCEPT listed worlds
+  #
+  mode: whitelist
+
+  #
+  # World list
+  #
+  list:
+
+    #
+    # Default overworld
+    #
     - world
+
+    #
+    # Example lobby world
+    #
     - spawn
+

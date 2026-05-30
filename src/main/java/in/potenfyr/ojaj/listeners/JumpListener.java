@@ -3,36 +3,25 @@ package in.potenfyr.ojaj.listeners;
 import com.destroystokyo.paper.event.player.PlayerJumpEvent;
 import in.potenfyr.ojaj.ConfigManager;
 import in.potenfyr.ojaj.OneJumpAllJump;
+import in.potenfyr.ojaj.model.CachedSettings;
+import in.potenfyr.ojaj.utils.RandomUtil;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
-/**
- * Handles synchronized jumping.
- */
 public class JumpListener implements Listener {
 
     private final OneJumpAllJump plugin;
 
-    /**
-     * Prevent recursive jump triggers.
-     */
-    private final Set<UUID> jumpLock = new HashSet<>();
-
-    /**
-     * Anti-spam cooldown tracking.
-     */
-    private final Map<UUID, Long> cooldowns = new HashMap<>();
+    private final Set<UUID> jumpLock =
+            new HashSet<>();
 
     public JumpListener(OneJumpAllJump plugin) {
         this.plugin = plugin;
@@ -41,86 +30,102 @@ public class JumpListener implements Listener {
     @EventHandler
     public void onJump(PlayerJumpEvent event) {
 
-        ConfigManager cfg = plugin.getConfigManager();
+        CachedSettings cfg =
+                plugin.getConfigManager().getSettings();
 
         Player jumper = event.getPlayer();
 
-        /*
-         * Plugin globally disabled
-         */
-        if (!cfg.isEnabled()) {
+        if (!cfg.enabled()) {
             return;
         }
 
-        /*
-         * Ignore bypass players
-         */
-        if (jumper.hasPermission("onejump.bypass")) {
-            return;
-        }
-
-        /*
-         * World whitelist check
-         */
-        if (!cfg.getWorldWhitelist().contains(
-                jumper.getWorld().getName()
-        )) {
-            return;
-        }
-
-        /*
-         * Prevent recursive triggers
-         */
         if (jumpLock.contains(jumper.getUniqueId())) {
             return;
         }
 
-        /*
-         * Cooldown handling
-         */
+        if (jumper.hasPermission(
+                "onejump.bypass"
+        )) {
+            return;
+        }
+
+        boolean allowed;
+
+        if (cfg.worldMode().equalsIgnoreCase(
+                "whitelist"
+        )) {
+
+            allowed = cfg.worldList().contains(
+                    jumper.getWorld().getName()
+            );
+
+        } else {
+
+            allowed = !cfg.worldList().contains(
+                    jumper.getWorld().getName()
+            );
+        }
+
+        if (!allowed) {
+            return;
+        }
+
         long cooldownMillis =
-                cfg.getCooldownSeconds() * 1000L;
+                cfg.cooldownSeconds() * 1000L;
 
-        if (cooldowns.containsKey(jumper.getUniqueId())) {
+        if (plugin.getCooldownManager()
+                .isOnCooldown(
+                        jumper.getUniqueId(),
+                        cooldownMillis
+                )) {
 
-            long lastTrigger =
-                    cooldowns.get(jumper.getUniqueId());
+            return;
+        }
 
-            if (System.currentTimeMillis() - lastTrigger
-                    < cooldownMillis) {
+        plugin.getCooldownManager()
+                .setCooldown(jumper.getUniqueId());
 
+        if (cfg.triggerChanceEnabled()) {
+
+            int random =
+                    RandomUtil.randomInt(1, 100);
+
+            if (random > cfg.triggerChance()) {
                 return;
             }
         }
 
-        cooldowns.put(
-                jumper.getUniqueId(),
-                System.currentTimeMillis()
-        );
+        plugin.getStatsManager()
+                .addJump(jumper.getUniqueId());
 
-        /*
-         * Make every player jump
-         */
-        for (Player player : Bukkit.getOnlinePlayers()) {
+        for (Player player :
+                Bukkit.getOnlinePlayers()) {
 
             jumpLock.add(player.getUniqueId());
 
-            // Preserve X/Z motion while applying Y velocity
-            Vector velocity = player.getVelocity();
+            double yVelocity = cfg.velocityY();
 
-            velocity.setY(cfg.getJumpVelocity());
+            if (cfg.randomVelocity()) {
+
+                yVelocity = RandomUtil.randomDouble(
+                        cfg.randomMin(),
+                        cfg.randomMax()
+                );
+            }
+
+            Vector velocity =
+                    player.getVelocity();
+
+            velocity.setY(yVelocity);
 
             player.setVelocity(velocity);
 
-            /*
-             * Spawn jump particles
-             */
             if (cfg.particlesEnabled()) {
 
                 player.spawnParticle(
-                        cfg.getParticleType(),
+                        cfg.particle(),
                         player.getLocation().add(0, 1, 0),
-                        cfg.getParticleAmount(),
+                        cfg.particleAmount(),
                         0.3,
                         0.3,
                         0.3,
@@ -128,91 +133,85 @@ public class JumpListener implements Listener {
                 );
             }
 
-            /*
-             * Play synchronized sound
-             */
             if (cfg.soundEnabled()) {
 
                 player.playSound(
                         player.getLocation(),
-                        cfg.getSound(),
-                        cfg.getSoundVolume(),
-                        cfg.getSoundPitch()
+                        cfg.sound(),
+                        cfg.volume(),
+                        cfg.pitch()
                 );
             }
 
-            /*
-             * Action bar message
-             */
-            if (cfg.actionBarEnabled()) {
+            if (cfg.actionbarEnabled()) {
 
                 player.sendActionBar(
                         Component.text(
-                                cfg.getActionBarMessage(
-                                        jumper.getName()
-                                )
+                                cfg.actionbarMessage()
+                                        .replace(
+                                                "%player%",
+                                                jumper.getName()
+                                        )
                         )
                 );
             }
 
-            /*
-             * Particle trail effect
-             */
-            if (cfg.trailEnabled()) {
-                createTrail(player);
+            if (cfg.titlesEnabled()) {
+
+                player.sendTitlePart(
+                        net.kyori.adventure.title.TitlePart.TITLE,
+                        Component.text(
+                                cfg.title()
+                                        .replace(
+                                                "%player%",
+                                                jumper.getName()
+                                        )
+                        )
+                );
+
+                player.sendTitlePart(
+                        net.kyori.adventure.title.TitlePart.SUBTITLE,
+                        Component.text(
+                                cfg.subtitle()
+                                        .replace(
+                                                "%player%",
+                                                jumper.getName()
+                                        )
+                        )
+                );
             }
 
-            /*
-             * Remove jump lock after few ticks
-             */
+            if (cfg.trailEnabled()) {
+
+                plugin.getEffectManager()
+                        .createTrail(
+                                player,
+                                cfg.trailParticle(),
+                                cfg.trailAmount(),
+                                cfg.trailDuration()
+                        );
+            }
+
             Bukkit.getScheduler().runTaskLater(
                     plugin,
-                    () -> jumpLock.remove(player.getUniqueId()),
+                    () -> jumpLock.remove(
+                            player.getUniqueId()
+                    ),
                     5L
             );
         }
-    }
 
-    /**
-     * Creates a temporary particle trail behind player.
-     */
-    private void createTrail(Player player) {
+        if (cfg.broadcastEnabled()) {
 
-        ConfigManager cfg = plugin.getConfigManager();
-
-        final int[] ticks = {0};
-
-        final BukkitTask[] task = new BukkitTask[1];
-
-        task[0] = Bukkit.getScheduler().runTaskTimer(
-                plugin,
-                () -> {
-
-                    if (!player.isOnline()) {
-                        task[0].cancel();
-                        return;
-                    }
-
-                    player.spawnParticle(
-                            cfg.getTrailParticle(),
-                            player.getLocation(),
-                            cfg.getTrailAmount(),
-                            0.15,
-                            0.15,
-                            0.15,
-                            0
-                    );
-
-                    ticks[0]++;
-
-                    if (ticks[0]
-                            >= cfg.getTrailDuration()) {
-
-                        task[0].cancel();
-                    }
-                },
-                0L,
-                1L
-        );
+            Bukkit.broadcast(
+                    Component.text(
+                            cfg.broadcastMessage()
+                                    .replace(
+                                            "%player%",
+                                            jumper.getName()
+                                    )
+                    )
+            );
+        }
     }
 }

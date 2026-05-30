@@ -1,147 +1,241 @@
 package in.potenfyr.ojaj;
 
-import org.bukkit.ChatColor;
-import org.bukkit.Particle;
-import org.bukkit.Sound;
-import org.bukkit.configuration.file.FileConfiguration;
+import in.potenfyr.ojaj.model.CachedSettings;
+import in.potenfyr.ojaj.utils.ColorUtil;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Particle;
 import org.bukkit.Registry;
-import java.util.List;
+import org.bukkit.Sound;
 
-/**
- * Handles config access and parsing.
- */
 public class ConfigManager {
 
     private final OneJumpAllJump plugin;
 
+    private CachedSettings settings;
+
     public ConfigManager(OneJumpAllJump plugin) {
+
         this.plugin = plugin;
+
+        load();
     }
 
     /**
      * Reload config from disk.
      */
     public void reload() {
+
         plugin.reloadConfig();
+
+        load();
     }
 
     /**
-     * Shortcut to get config object.
+     * Cache all config values for performance.
      */
-    public FileConfiguration get() {
-        return plugin.getConfig();
-    }
+    private void load() {
 
-    public boolean isEnabled() {
-        return get().getBoolean("enabled");
-    }
+        settings = new CachedSettings(
 
-    public int getCooldownSeconds() {
-        return get().getInt("cooldown-seconds");
-    }
+                plugin.getConfig().getBoolean(
+                        "enabled"
+                ),
 
-    public double getJumpVelocity() {
-        return get().getDouble("velocity.y");
-    }
+                plugin.getConfig().getInt(
+                        "cooldown.seconds"
+                ),
 
-    public boolean particlesEnabled() {
-        return get().getBoolean("particles.enabled");
-    }
+                plugin.getConfig().getDouble(
+                        "velocity.y"
+                ),
 
-    public Particle getParticleType() {
-        return Particle.valueOf(
-                get().getString("particles.type")
-        );
-    }
+                plugin.getConfig().getBoolean(
+                        "velocity.random.enabled"
+                ),
 
-    public int getParticleAmount() {
-        return get().getInt("particles.amount");
-    }
+                plugin.getConfig().getDouble(
+                        "velocity.random.min"
+                ),
 
-    public boolean trailEnabled() {
-        return get().getBoolean("trail.enabled");
-    }
+                plugin.getConfig().getDouble(
+                        "velocity.random.max"
+                ),
 
-    public Particle getTrailParticle() {
-        return Particle.valueOf(
-                get().getString("trail.particle")
-        );
-    }
+                plugin.getConfig().getBoolean(
+                        "trigger-chance.enabled"
+                ),
 
-    public int getTrailDuration() {
-        return get().getInt("trail.duration-ticks");
-    }
+                plugin.getConfig().getInt(
+                        "trigger-chance.chance"
+                ),
 
-    public int getTrailAmount() {
-        return get().getInt("trail.amount");
-    }
+                plugin.getConfig().getBoolean(
+                        "fall-damage.cancel"
+                ),
 
-    public boolean soundEnabled() {
-        return get().getBoolean("sound.enabled");
-    }
+                plugin.getConfig().getBoolean(
+                        "particles.enabled"
+                ),
 
-    public Sound getSound() {
+                getParticle(
+                        plugin.getConfig().getString(
+                                "particles.type"
+                        ),
+                        Particle.END_ROD
+                ),
 
-        String soundName =
-                get().getString("sound.type");
+                plugin.getConfig().getInt(
+                        "particles.amount"
+                ),
 
-        if (soundName == null) {
-            return Sound.ENTITY_FIREWORK_ROCKET_LAUNCH;
-        }
+                plugin.getConfig().getBoolean(
+                        "trail.enabled"
+                ),
 
-        Sound sound = Registry.SOUNDS.get(
-                NamespacedKey.minecraft(
-                        soundName.toLowerCase()
+                getParticle(
+                        plugin.getConfig().getString(
+                                "trail.particle"
+                        ),
+                        Particle.HAPPY_VILLAGER
+                ),
+
+                plugin.getConfig().getInt(
+                        "trail.amount"
+                ),
+
+                plugin.getConfig().getInt(
+                        "trail.duration-ticks"
+                ),
+
+                plugin.getConfig().getBoolean(
+                        "sound.enabled"
+                ),
+
+                getSound(
+                        plugin.getConfig().getString(
+                                "sound.type"
+                        ),
+                        Sound.ENTITY_FIREWORK_ROCKET_LAUNCH
+                ),
+
+                (float) plugin.getConfig().getDouble(
+                        "sound.volume"
+                ),
+
+                (float) plugin.getConfig().getDouble(
+                        "sound.pitch"
+                ),
+
+                plugin.getConfig().getBoolean(
+                        "actionbar.enabled"
+                ),
+
+                ColorUtil.color(
+                        plugin.getConfig().getString(
+                                "actionbar.message"
+                        )
+                ),
+
+                plugin.getConfig().getBoolean(
+                        "titles.enabled"
+                ),
+
+                ColorUtil.color(
+                        plugin.getConfig().getString(
+                                "titles.title"
+                        )
+                ),
+
+                ColorUtil.color(
+                        plugin.getConfig().getString(
+                                "titles.subtitle"
+                        )
+                ),
+
+                plugin.getConfig().getInt(
+                        "titles.fadein"
+                ),
+
+                plugin.getConfig().getInt(
+                        "titles.stay"
+                ),
+
+                plugin.getConfig().getInt(
+                        "titles.fadeout"
+                ),
+
+                plugin.getConfig().getBoolean(
+                        "broadcast.enabled"
+                ),
+
+                ColorUtil.color(
+                        plugin.getConfig().getString(
+                                "broadcast.message"
+                        )
+                ),
+
+                plugin.getConfig().getString(
+                        "worlds.mode"
+                ),
+
+                plugin.getConfig().getStringList(
+                        "worlds.list"
                 )
         );
-
-        if (sound == null) {
-            return Sound.ENTITY_FIREWORK_ROCKET_LAUNCH;
-        }
-
-        return sound;
-    }
-
-    public float getSoundVolume() {
-        return (float) get().getDouble("sound.volume");
-    }
-
-    public float getSoundPitch() {
-        return (float) get().getDouble("sound.pitch");
-    }
-
-    public boolean actionBarEnabled() {
-        return get().getBoolean("actionbar.enabled");
-    }
-
-    public String getActionBarMessage(String player) {
-
-        return color(
-                get().getString("actionbar.message")
-                        .replace("%player%", player)
-        );
-    }
-
-    public List<String> getWorldWhitelist() {
-        return get().getStringList("worlds.whitelist");
-    }
-
-    public String getMessage(String path) {
-
-        return color(
-                get().getString("messages." + path)
-        );
     }
 
     /**
-     * Convert & color codes.
+     * Get cached settings.
      */
-    private String color(String text) {
+    public CachedSettings getSettings() {
+        return settings;
+    }
 
-        return ChatColor.translateAlternateColorCodes(
-                '&',
-                text
-        );
+    /**
+     * Parse particle safely.
+     */
+    private Particle getParticle(
+            String name,
+            Particle fallback
+    ) {
+
+        if (name == null) {
+            return fallback;
+        }
+
+        Particle particle =
+                Registry.PARTICLE_TYPE.get(
+                        NamespacedKey.minecraft(
+                                name.toLowerCase()
+                        )
+                );
+
+        return particle != null
+                ? particle
+                : fallback;
+    }
+
+    /**
+     * Parse sound safely.
+     */
+    private Sound getSound(
+            String name,
+            Sound fallback
+    ) {
+
+        if (name == null) {
+            return fallback;
+        }
+
+        Sound sound =
+                Registry.SOUNDS.get(
+                        NamespacedKey.minecraft(
+                                name.toLowerCase()
+                        )
+                );
+
+        return sound != null
+                ? sound
+                : fallback;
     }
 }
