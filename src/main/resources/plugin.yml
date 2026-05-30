@@ -1,0 +1,21 @@
+name: OneJumpAllJump
+version: 1.0
+main: in.potenfyr.ojaj.OneJumpAllJump
+api-version: '1.21'
+author: Ashutosh
+
+commands:
+  onejump:
+    description: Main plugin command
+    aliases:
+      - ojaj
+
+permissions:
+
+  onejump.admin:
+    description: Access admin commands
+    default: op
+
+  onejump.bypass:
+    description: Prevent player's jumps from triggering server jumps
+    default: false

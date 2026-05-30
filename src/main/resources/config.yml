@@ -1,0 +1,67 @@
+#
+# OneJumpAllJump Configuration
+#
+
+enabled: true
+
+#
+# Anti-spam cooldown
+#
+cooldown-seconds: 2
+
+#
+# Jump strength
+#
+velocity:
+  y: 0.42
+
+#
+# Main jump particles
+#
+particles:
+  enabled: true
+  type: END_ROD
+  amount: 25
+
+#
+# Particle trail effect
+#
+trail:
+  enabled: true
+  particle: HAPPY_VILLAGER
+  duration-ticks: 10
+  amount: 5
+
+#
+# Sound effect
+#
+sound:
+  enabled: true
+  type: ENTITY_FIREWORK_ROCKET_LAUNCH
+  volume: 1.0
+  pitch: 1.2
+
+#
+# Action bar message
+#
+actionbar:
+  enabled: true
+  message: "&e%player% made everyone jump!"
+
+#
+# Messages
+#
+messages:
+  plugin-disabled: "&cPlugin is disabled."
+  no-permission: "&cYou do not have permission."
+  enabled: "&aPlugin enabled."
+  disabled: "&cPlugin disabled."
+  reloaded: "&aConfiguration reloaded."
+
+#
+# World whitelist
+#
+worlds:
+  whitelist:
+    - world
+    - spawn
