@@ -4,7 +4,7 @@
 <!-- ====================================================== -->
 
 <p align="center">
-  <img src="./banner.png" alt="OneJumpAllJump Banner">
+  <img src="https://raw.githubusercontent.com/Potato-Modding/ojaj/refs/heads/main/banner.png" alt="OneJumpAllJump Banner">
 </p>
 
 <h1 align="center">OneJumpAllJump</h1>
@@ -153,27 +153,6 @@ Everything is configurable:
 * world restrictions
 * trigger chance
 * fall damage handling
-
----
-
-# Building
-
-Requires:
-
-* Java 21
-* Maven
-
-Build command:
-
-```bash
-mvn clean package
-```
-
-Compiled jar:
-
-```text
-target/OneJumpAllJump-1.0.jar
-```
 
 ---
 

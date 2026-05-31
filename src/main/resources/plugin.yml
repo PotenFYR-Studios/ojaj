@@ -2,7 +2,7 @@ name: OneJumpAllJump
 version: 1.0
 main: in.potenfyr.ojaj.OneJumpAllJump
 api-version: '1.21'
-author: Ashutosh
+author: dashutosh04
 
 commands:
   onejump:
