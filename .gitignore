@@ -113,3 +113,7 @@ buildNumber.properties
 run/
 testserver/
 Testserver
+# Local agent/assistant artifacts (do not commit)
+CLAUDE.md
+.rtk
+.plan
