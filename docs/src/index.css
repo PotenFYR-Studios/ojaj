@@ -226,18 +226,7 @@ select:focus-visible {
   border-radius: 999px;
   background: #34d399;
   box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
-  animation: pulse-dot 2.4s ease-in-out infinite;
 }
-@keyframes pulse-dot {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.45;
-  }
-}
-
 /* ------------------------------------------------- hero entrance (once) */
 .hero-in {
   opacity: 0;
