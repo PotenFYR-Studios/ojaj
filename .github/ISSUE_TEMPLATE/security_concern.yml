@@ -1,0 +1,28 @@
+name: Security concern
+description: Non-critical security question or hardening idea (critical vulns go to private reporting)
+labels: ["security"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Important:** for exploitable vulnerabilities, use
+        [private vulnerability reporting](https://github.com/PotenFYR-Studios/ojaj/security/advisories/new)
+        or email [support@potenfyr.in](mailto:support@potenfyr.in); do not disclose publicly.
+        Use this template only for questions and hardening suggestions.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Type
+      options:
+        - Hardening suggestion
+        - Security question about documented behavior
+        - Potential issue (non-exploitable)
+    validations:
+      required: true
+  - type: textarea
+    id: concern
+    attributes:
+      label: Description
+      description: What behavior concerns you, and under which config?
+    validations:
+      required: true

@@ -1,0 +1,32 @@
+name: Documentation
+description: Report an issue or gap in the docs site
+labels: ["documentation"]
+body:
+  - type: dropdown
+    id: page
+    attributes:
+      label: Where?
+      options:
+        - Landing page (ojaj.docs.potenfyr.in)
+        - Getting started
+        - Gameplay & mechanics
+        - Configuration reference
+        - Commands & permissions
+        - FAQ
+        - About
+        - README
+        - Other / missing page
+    validations:
+      required: true
+  - type: textarea
+    id: issue
+    attributes:
+      label: What's wrong?
+      description: Outdated, incorrect, unclear or missing information; include the exact section.
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested fix
+      description: The correct behavior/wording, ideally with a link to the source (file, config key, command).

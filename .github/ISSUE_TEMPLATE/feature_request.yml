@@ -1,0 +1,30 @@
+name: Feature request
+description: Suggest a new way to bend physics
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What gameplay situation needs this feature?
+      placeholder: On my anarchy server, players want...
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: What should happen, and roughly how (config keys, commands, mechanics)?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - label: This fits a chaos plugin (it adds fun, not moderation tooling)
+        - label: I understand this is an alpha project and features land at maintainer discretion

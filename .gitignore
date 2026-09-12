@@ -117,3 +117,9 @@ Testserver
 CLAUDE.md
 .rtk
 .plan
+
+# Docs site (Vite build output + deps)
+docs/dist/
+docs/node_modules/
+docs/.vite/
+

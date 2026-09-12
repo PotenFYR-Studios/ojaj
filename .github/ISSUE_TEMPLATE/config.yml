@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: PotenFYR Studios Discord
+    url: https://discord.com/invite/zUaN2FPBec
+    about: Live chat, support and chaos coordination
+  - name: Modrinth project page
+    url: https://modrinth.com/plugin/onejumpalljump
+    about: Downloads, version support and user reviews
+  - name: Documentation
+    url: https://ojaj.docs.potenfyr.in
+    about: Install guide, gameplay mechanics, config reference and FAQ
+  - name: Security vulnerabilities
+    url: https://github.com/PotenFYR-Studios/ojaj/security/advisories/new
+    about: Report privately, do not open a public issue

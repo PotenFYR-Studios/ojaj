@@ -1,0 +1,21 @@
+name: Question
+description: Ask anything about using the plugin
+labels: ["question"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Your question
+      description: Gameplay, config or hosting questions are all welcome.
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        Tip: most answers live in the [FAQ](https://ojaj.docs.potenfyr.in/docs/faq.html) and the
+        [configuration reference](https://ojaj.docs.potenfyr.in/docs/configuration.html).
+  - type: input
+    id: plugin-version
+    attributes:
+      label: Plugin version (if relevant)
+      placeholder: 0.1.0-alpha

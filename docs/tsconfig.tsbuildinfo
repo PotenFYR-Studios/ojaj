@@ -1,0 +1,1 @@
+{"root":["./src/App.tsx","./src/entry-server.tsx","./src/magicui.tsx","./src/main.tsx","./src/site.ts","./src/components/DocsShell.tsx","./src/components/bits.tsx","./src/components/chrome.tsx","./src/pages/About.tsx","./src/pages/Landing.tsx","./src/pages/License.tsx","./src/pages/docs.tsx","./src/pages/docs2.tsx","./vite.config.ts"],"version":"5.9.3"}

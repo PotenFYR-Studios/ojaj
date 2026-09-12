@@ -1,178 +1,107 @@
+<!-- markdownlint-disable -->
+<div align="center">
 
-<!-- ====================================================== -->
-<!--                     BANNER SECTION                      -->
-<!-- ====================================================== -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:8b5cf6,50:ec4899,100:f97316&height=220&section=header&text=ojaj&fontSize=52&fontColor=ffffff&fontAlignY=34&animation=twinkling" width="100%" alt="ojaj banner"/>
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/Potato-Modding/ojaj/refs/heads/main/banner.png" alt="OneJumpAllJump Banner">
-</p>
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&pause=1200&color=8B5CF6&center=true&vCenter=true&width=800&lines=One+jump.+Everybody+jumps.;Random+launch+power%2C+particles%2C+pure+chaos;Paper+and+Purpur.+Server-side+only.;Whitelist+your+worlds.+Blacklist+your+sanity.)](https://github.com/PotenFYR-Studios/ojaj)
 
-<h1 align="center">OneJumpAllJump</h1>
+[![Modrinth](https://img.shields.io/badge/Modrinth-Download-1bd96a?style=for-the-badge&logo=modrinth&logoColor=white&labelColor=1c1e26)](https://modrinth.com/plugin/onejumpalljump)
+[![Docs](https://img.shields.io/badge/Docs-ojaj.docs.potenfyr.in-8b5cf6?style=for-the-badge&logo=readme&logoColor=white&labelColor=1c1e26)](https://ojaj.docs.potenfyr.in)
+[![License](https://img.shields.io/badge/License-Apache--2.0%20%2B%20Commons%20Clause-f97316?style=for-the-badge&logo=apache&logoColor=white&labelColor=1c1e26)](https://github.com/PotenFYR-Studios/ojaj/blob/master/LICENSE)
+[![GitHub repo](https://img.shields.io/badge/GitHub-PotenFYR--Studios%2Fojaj-181717?style=for-the-badge&logo=github&logoColor=white&labelColor=1c1e26)](https://github.com/PotenFYR-Studios/ojaj)
+[![Profile views](https://komarev.com/ghpvc/?username=PotenFYR-Studios-ojaj&color=ec4899&style=for-the-badge&label=PROFILE+VIEWS&labelColor=1c1e26)](https://github.com/PotenFYR-Studios/ojaj)
 
-<p align="center">
-  A chaotic Paper plugin where one player's jump launches the entire server.
-</p>
+</div>
 
-<p align="center">
+**OneJumpAllJump** (short: **ojaj**) is a chaotic, server-side [Paper](https://papermc.io) plugin for Minecraft 26.1+ where **one player's jump launches every player on the server**: each with an independent random launch power, wrapped in particle bursts, synchronized sounds, fullscreen titles and a chat broadcast. The original Minecraft chaos plugin where physics becomes a group activity.
 
-  <img src="https://img.shields.io/badge/Minecraft-26.1+-brightgreen?style=for-the-badge">
+## ✨ What it does
 
-  <img src="https://img.shields.io/badge/Platform-Paper-blue?style=for-the-badge">
+- **Global synchronized jumps**: one real jump (Paper's `PlayerJumpEvent`) launches every online player in the same tick
+- **Random launch power**: per-player roll between `0.35` and `1.10` by default; fixed velocity mode available (vanilla jump ≈ `0.42`)
+- **Full spectacle kit**: particle bursts, particle trails, sounds, action bars, titles/subtitles, chat broadcasts, all configurable, all with `%player%`
+- **Safeguards**: 5-tick re-entry lock (no infinite cascade), per-player cooldown, `onejump.bypass` opt-out, optional trigger chance, world whitelist/blacklist
+- **Soft landings**: optional fall-damage cancellation (on by default)
+- **Fast**: every config value is cached on load and after `/onejump reload`; zero per-jump file reads
 
-  <img src="https://img.shields.io/badge/Status-Alpha-orange?style=for-the-badge">
+> 🧪 **Alpha notice:** balancing tweaks, edge-case bugs and the occasional config change between versions are expected. Feedback and testing are appreciated.
 
-  <img src="https://img.shields.io/badge/Java-21-red?style=for-the-badge">
+## 🚀 Installation
 
-</p>
+1. Download the latest jar from [Modrinth](https://modrinth.com/plugin/onejumpalljump)
+2. Drop it into your server's `plugins/` folder
+3. Restart the server: a default `config.yml` is generated on first run
+4. Jump.
 
----
+Requires **Paper or Purpur** (the jump event is a Paper API; plain Spigot is not supported) for **Minecraft 26.1+**, Java 21+. Full guide: [Getting started](https://ojaj.docs.potenfyr.in/docs/getting-started.html).
 
-# Features
-
-- Global synchronized jumping
-- Random jump velocity system
-- Action bars
-- Titles & subtitles
-- Broadcast messages
-- Particle trails
-- Sound effects
-- World whitelist / blacklist
-- Anti-spam cooldown system
-- Trigger chance system
-- Fall damage protection
-- Stats tracking
-- Fully configurable
-- Optimized cached config system
-
----
-
-# Preview
-
-When a single player jumps:
-
-- every player gets launched
-- particles explode everywhere
-- synchronized sounds play
-- titles appear on screen
-- actionbars update instantly
-- the server descends into chaos
-
----
-
-# Commands
+## 🕹️ Commands & permissions
 
 | Command | Description |
 |---|---|
-| `/onejump toggle` | Enable/disable plugin |
-| `/onejump reload` | Reload configuration |
-| `/onejump stats` | View your tracked jumps |
+| `/onejump` (`/ojaj`) | Help menu |
+| `/onejump toggle` | Flip the plugin on/off (writes to `config.yml`) |
+| `/onejump reload` | Re-read `config.yml` from disk |
+| `/onejump stats` | Your tracked global-jump count (in-memory) |
 
-Aliases:
+| Permission | Default | Description |
+|---|---|---|
+| `onejump.admin` | op | Required for every `/onejump` subcommand |
+| `onejump.bypass` | false | Holder never triggers global jumps |
 
-```text
-/ojaj
-````
+## 🎛️ Configuration
 
----
-
-# Permissions
-
-| Permission       | Description                          |
-| ---------------- | ------------------------------------ |
-| `onejump.admin`  | Access admin commands                |
-| `onejump.bypass` | Prevent player from triggering jumps |
-
----
-
-# Supported Servers
-
-| Software   | Supported |
-| ---------- | --------- |
-| Paper      | ✅         |
-| Purpur     | ✅         |
-| Pufferfish | ✅         |
-| Spigot     | ❌         |
-
----
-
-# Installation
-
-1. Download latest release
-2. Put jar inside:
-
-```text
-/plugins/
-```
-
-3. Restart server
-
----
-
-# Example Configuration
+Everything lives in `plugins/OneJumpAllJump/config.yml`: launch power & randomness, cooldown, trigger chance, fall damage, particles, trails, sounds, action bar, titles, broadcasts and world whitelist/blacklist. A taste:
 
 ```yaml
-enabled: true
-
-cooldown:
-  seconds: 2
-
 velocity:
-  y: 0.42
-
+  y: 0.42              # vanilla jump ≈ 0.42
   random:
-    enabled: true
+    enabled: true      # every player rolls their own power
     min: 0.35
     max: 1.10
 
-particles:
-  enabled: true
-  type: end_rod
-  amount: 25
+trigger-chance:
+  enabled: false
+  chance: 100          # percent chance a jump triggers the chaos
 
-sound:
-  enabled: true
-  type: entity_firework_rocket_launch
-  volume: 1.0
-  pitch: 1.2
+worlds:
+  mode: whitelist      # whitelist | blacklist
+  list:
+    - world
+    - spawn
 ```
 
----
+📖 **Every key is documented** in the [Configuration reference](https://ojaj.docs.potenfyr.in/docs/configuration.html).
 
-# Configuration Features
+## 📚 Documentation
 
-Everything is configurable:
+Full documentation lives at **[ojaj.docs.potenfyr.in](https://ojaj.docs.potenfyr.in)**:
 
-* jump strength
-* random launch power
-* particles
-* sounds
-* trails
-* titles
-* broadcasts
-* cooldowns
-* world restrictions
-* trigger chance
-* fall damage handling
+- [Getting started](https://ojaj.docs.potenfyr.in/docs/getting-started.html): install and first launch
+- [Gameplay & mechanics](https://ojaj.docs.potenfyr.in/docs/gameplay.html): the exact trigger chain and launch math
+- [Configuration](https://ojaj.docs.potenfyr.in/docs/configuration.html): full `config.yml` reference
+- [Commands & permissions](https://ojaj.docs.potenfyr.in/docs/commands-permissions.html)
+- [FAQ](https://ojaj.docs.potenfyr.in/docs/faq.html)
 
----
+## 🤝 Contributing
 
-# Alpha Notice
+Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for how to build the plugin (Maven + Java 21) and the docs site (Bun + Vite), and how to open good issues and PRs.
 
-This plugin is currently in alpha.
+## 🔒 Security
 
-Possible issues may include:
+Found a vulnerability? Please report it privately; see [SECURITY.md](SECURITY.md). Do not open public issues for security reports.
 
-* balancing problems
-* edge-case bugs
-* unfinished systems
-* config changes between versions
+## 📜 Licensing
 
-Feedback and testing are appreciated.
+ojaj is free for any purpose, commercial use included: run it on any server, fork it, modify it, self-host it, redistribute it, and build products or services around it. You may not sell the software itself, offer a paid product or service whose value derives entirely or substantially from this software's functionality, or use PotenFYR names, logos or trademarks. License notices you redistribute must carry the Commons Clause notice. The <https://github.com/PotenFYR-Studios/ojaj/blob/master/LICENSE> file is the single authoritative source, not this summary.
 
 ---
 
-# Credits
+<!-- markdownlint-disable -->
+<div align="center">
 
-Developed by Potenfyr.
-Built for chaotic multiplayer gameplay.
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:f97316,50:ec4899,100:8b5cf6&height=120&section=footer&text=Made%20with%20%E2%9D%A4%EF%B8%8F%20by%20PotenFYR%20Studios&fontSize=22&fontColor=ffffff&animation=twinkling" width="100%" alt="footer"/>
 
+</div>
+<!-- markdownlint-enable -->

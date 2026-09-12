@@ -6,6 +6,13 @@
     <artifactId>OneJumpAllJump</artifactId>
     <version>1.0-ALPHA</version>
 
+    <licenses>
+        <license>
+            <name>Commons Clause License Condition v1.0 + Apache License, Version 2.0</name>
+            <url>https://github.com/PotenFYR-Studios/ojaj/blob/master/LICENSE</url>
+        </license>
+    </licenses>
+
     <properties>
 
         <maven.compiler.source>
