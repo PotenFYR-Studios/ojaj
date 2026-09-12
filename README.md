@@ -96,12 +96,47 @@ Found a vulnerability? Please report it privately; see [SECURITY.md](SECURITY.md
 
 ojaj is free for any purpose, commercial use included: run it on any server, fork it, modify it, self-host it, redistribute it, and build products or services around it. You may not sell the software itself, offer a paid product or service whose value derives entirely or substantially from this software's functionality, or use PotenFYR names, logos or trademarks. License notices you redistribute must carry the Commons Clause notice. The <https://github.com/PotenFYR-Studios/ojaj/blob/master/LICENSE> file is the single authoritative source, not this summary.
 
+## Contributing
+
+Contributions make the open-source community such an amazing place to learn, inspire and create. Any contributions you make are **greatly appreciated** - see [CONTRIBUTING.md](CONTRIBUTING.md) and the [good first issues](https://github.com/PotenFYR-Studios/ojaj/labels/good%20first%20issue). Security concerns: please use [SECURITY.md](SECURITY.md) (private vulnerability reporting), not public issues.
+
+<a href="https://github.com/PotenFYR-Studios/ojaj/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=PotenFYR-Studios/ojaj" alt="ojaj contributors" />
+</a>
+<a href="https://github.com/PotenFYR-Studios/ojaj/stargazers">
+  <img src="https://img.shields.io/github/stars/PotenFYR-Studios/ojaj?style=social&label=Stars" alt="Live star count" />
+</a>
+<a href="https://github.com/PotenFYR-Studios/ojaj/network/members">
+  <img src="https://img.shields.io/github/forks/PotenFYR-Studios/ojaj?style=social&label=Forks" alt="Live fork count" />
+</a>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/PotenFYR-Studios/FYRwall/output/github-snake-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/PotenFYR-Studios/FYRwall/output/github-snake.svg" />
+  <img alt="Contribution snake animation" src="https://raw.githubusercontent.com/PotenFYR-Studios/FYRwall/output/github-snake.svg" width="100%" />
+</picture>
+
+
 ---
 
 <!-- markdownlint-disable -->
+
+
 <div align="center">
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:f97316,50:ec4899,100:8b5cf6&height=120&section=footer&text=Made%20with%20%E2%9D%A4%EF%B8%8F%20by%20PotenFYR%20Studios&fontSize=22&fontColor=ffffff&animation=twinkling" width="100%" alt="footer"/>
 
 </div>
 <!-- markdownlint-enable -->
+
+---
+
+## ⭐ Star History
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=potenfyr-studios/authcore,potenfyr-studios/statfyr,potenfyr-studios/discord-botlists,potenfyr-studios/vigilfyr,potenfyr-studios/shell-eggs,potenfyr-studios/prog-language-eggs,potenfyr-studios/minecraft-eggs,potenfyr-studios/database-eggs,potenfyr-studios/apicordon,potenfyr-studios/ojaj,potenfyr-studios/fyrwall,potenfyr-studios/echoingdeaths&type=Date&theme=dark" />
+  <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=potenfyr-studios/authcore,potenfyr-studios/statfyr,potenfyr-studios/discord-botlists,potenfyr-studios/vigilfyr,potenfyr-studios/shell-eggs,potenfyr-studios/prog-language-eggs,potenfyr-studios/minecraft-eggs,potenfyr-studios/database-eggs,potenfyr-studios/apicordon,potenfyr-studios/ojaj,potenfyr-studios/fyrwall,potenfyr-studios/echoingdeaths&type=Date" />
+  <img alt="Star history chart for all PotenFYR Studios public repositories" src="https://api.star-history.com/svg?repos=potenfyr-studios/authcore,potenfyr-studios/statfyr,potenfyr-studios/discord-botlists,potenfyr-studios/vigilfyr,potenfyr-studios/shell-eggs,potenfyr-studios/prog-language-eggs,potenfyr-studios/minecraft-eggs,potenfyr-studios/database-eggs,potenfyr-studios/apicordon,potenfyr-studios/ojaj,potenfyr-studios/fyrwall,potenfyr-studios/echoingdeaths&type=Date" width="80%" />
+</picture>
+
+Every public PotenFYR Studios repository on one live chart, served by [star-history.com](https://star-history.com).
