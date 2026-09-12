@@ -2,7 +2,7 @@ import { Footprints, Filter, Rocket, Sparkles, ShieldCheck, Download } from "luc
 import { Meteors, GlowOrb, DotPattern } from "../magicui";
 import { CodeBlock } from "../components/bits";
 import { Footer, Navbar } from "../components/chrome";
-import { MODRINTH, REPO } from "../site";
+import { MODRINTH, REPO, withBase } from "../site";
 
 const HERO_SNIPPET = `velocity:
   random:
@@ -96,7 +96,7 @@ export default function Landing() {
             className="hero-in mt-9 flex flex-wrap items-center justify-center gap-3.5"
             style={{ animationDelay: "0.3s" }}
           >
-            <a className="btn btn-primary" href="/docs/getting-started.html">
+            <a className="btn btn-primary" href={withBase("/docs/getting-started.html")}>
               Get started
             </a>
             <a className="btn btn-ghost" href={MODRINTH} target="_blank" rel="noopener">
@@ -171,7 +171,7 @@ export default function Landing() {
               <li>• Per-player cooldown + trigger chance for pacing</li>
               <li>• Cached config: zero per-jump file reads</li>
             </ul>
-            <a className="btn btn-ghost btn-sm mt-8" href="/docs/configuration.html">
+            <a className="btn btn-ghost btn-sm mt-8" href={withBase("/docs/configuration.html")}>
               Read the config reference →
             </a>
           </div>
@@ -190,7 +190,7 @@ export default function Landing() {
             base over the void.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3.5">
-            <a className="btn btn-primary" href="/docs/getting-started.html">
+            <a className="btn btn-primary" href={withBase("/docs/getting-started.html")}>
               Install the plugin
             </a>
             <a className="btn btn-ghost" href={REPO} target="_blank" rel="noopener">

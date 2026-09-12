@@ -11,7 +11,7 @@ const root = dirname(fileURLToPath(import.meta.url));
 // from vite's clean index.html shell.
 export default defineConfig({
   root,
-  base: "/",
+  base: process.env.VITE_BASE ?? "/",
   plugins: [react(), tailwindcss()],
   build: {
     outDir: "dist",

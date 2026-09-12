@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { DISCORD, MODRINTH, ORG, WEBSITE } from "../site";
+import { DISCORD, MODRINTH, ORG, WEBSITE, withBase } from "../site";
 
 /**
  * 56px sticky navbar (SPEC §5.1). `mode="docs"` renders the ojaj.docs topbar
@@ -18,9 +18,9 @@ export function Navbar({ mode }: { mode: "site" | "docs" }) {
 
   return (
     <header className="sticky top-0 z-500 flex h-14 items-center gap-3.5 border-b border-line-light bg-[#0b0d14]/72 px-5 backdrop-blur-[14px] saturate-150 max-[900px]:gap-2">
-      <a href="/" className="flex shrink-0 items-center gap-2.5" aria-label="OneJumpAllJump home">
+      <a href={withBase("/")} className="flex shrink-0 items-center gap-2.5" aria-label="OneJumpAllJump home">
         <img
-          src="/favicon.png"
+          src={withBase("/favicon.png")}
           alt=""
           width={24}
           height={24}
@@ -36,14 +36,14 @@ export function Navbar({ mode }: { mode: "site" | "docs" }) {
         <>
           <span className="text-line-light">|</span>
           <a
-            href="/docs/index.html"
+            href={withBase("/docs/index.html")}
             className="font-mono text-[0.72em] uppercase tracking-[0.15em] text-[#6a7089] transition-colors hover:text-[#c4b5fd]"
           >
             Docs
           </a>
           <span className="text-line-light">|</span>
           <a
-            href="/license.html"
+            href={withBase("/license.html")}
             className="font-mono text-[0.72em] uppercase tracking-[0.15em] text-[#6a7089] transition-colors hover:text-[#c4b5fd]"
           >
             License
@@ -117,7 +117,7 @@ function NavDropLink({
 }) {
   return (
     <a
-      href={href}
+      href={withBase(href)}
       {...(ext ? { target: "_blank", rel: "noopener" } : {})}
       className="rounded-[7px] px-2.5 py-1.5 text-[0.84em] font-medium text-[#9aa0b4] transition-colors hover:bg-white/5 hover:text-white"
     >
@@ -154,13 +154,13 @@ export function Footer() {
             <a href={MODRINTH} target="_blank" rel="noopener" className="transition-colors hover:text-white">
               Modrinth
             </a>
-            <a href="/examples.html" className="transition-colors hover:text-white">
+            <a href={withBase("/examples.html")} className="transition-colors hover:text-white">
               Examples
             </a>
-            <a href="/license.html" className="transition-colors hover:text-white">
+            <a href={withBase("/license.html")} className="transition-colors hover:text-white">
               License
             </a>
-            <a href="/docs/index.html" className="text-[#a78bfa] hover:underline">
+            <a href={withBase("/docs/index.html")} className="text-[#a78bfa] hover:underline">
               Docs
             </a>
           </div>

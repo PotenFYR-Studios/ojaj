@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Search, ChevronLeft, ChevronRight, ChevronDown, X } from "lucide-react";
-import { DOC_PAGES, type Heading, type PageMeta, pageById } from "../site";
+import { DOC_PAGES, type Heading, type PageMeta, pageById, withBase } from "../site";
 import { Footer, Navbar } from "./chrome";
 
 const groups: { label: string; ids: string[] }[] = [
@@ -9,11 +9,11 @@ const groups: { label: string; ids: string[] }[] = [
   { label: "Reference", ids: ["configuration", "commands-permissions", "faq", "examples", "license"] },
 ];
 
-const href = (p: PageMeta) => `/${p.file}`;
+const href = (p: PageMeta) => withBase(`/${p.file}`);
 
 function pageHref(id: string): string {
   const p = pageById(id);
-  return p ? href(p) : "/docs/index.html";
+  return p ? href(p) : withBase("/docs/index.html");
 }
 
 /* ------------------------------------------------- collapsible sidebar group */
@@ -339,7 +339,7 @@ export function DocsShell({
                   aria-label="Breadcrumb"
                   className="mb-2 flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.15em] text-[#6a7089]"
                 >
-                  <a href="/docs/index.html" className="transition-colors hover:text-[#c4b5fd]">
+                  <a href={withBase("/docs/index.html")} className="transition-colors hover:text-[#c4b5fd]">
                     Docs
                   </a>
                   {groupLabel && (

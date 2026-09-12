@@ -1,4 +1,5 @@
 import { CodeBlock } from "../components/bits";
+import { withBase } from "../site";
 import { ChevronDown } from "lucide-react";
 
 export function CommandsPermissions() {
@@ -131,7 +132,7 @@ export function FaqPage() {
     <>
       <p>
         Short answers first, details behind each question. The{" "}
-        <a href="/docs/gameplay.html">gameplay page</a> documents the full mechanics.
+        <a href={withBase("/docs/gameplay.html")}>gameplay page</a> documents the full mechanics.
       </p>
 
       <Faq id="q-spigot" q="Does it work on Spigot?">
@@ -340,7 +341,7 @@ export function Examples() {
       <h2 id="commands">Everyday commands</h2>
       <p>
         All of these need <code>onejump.admin</code> (op by default); see{" "}
-        <a href="/docs/commands-permissions.html">commands &amp; permissions</a>.
+        <a href={withBase("/docs/commands-permissions.html")}>commands &amp; permissions</a>.
       </p>
       <CodeBlock lang="text" code={COMMANDS_SNIPPET} />
     </>

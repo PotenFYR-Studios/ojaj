@@ -5,6 +5,32 @@
  */
 
 export const CANON = "https://ojaj.docs.potenfyr.in";
+
+/**
+ * Base path the site is served under. Set at build time via VITE_BASE
+ * (vite.config `base`); falls back through the runtime env so prerender
+ * scripts executed outside vite still resolve it.
+ */
+const envBase: unknown = import.meta.env?.BASE_URL;
+export const BASE: string =
+  typeof envBase === "string" ? envBase
+  : typeof process !== "undefined" ? process.env?.VITE_BASE ?? "/"
+  : "/";
+
+/** Prefix an absolute site path with the serving base (idempotent). */
+export function withBase(p: string): string {
+  if (BASE !== "/" && (p === BASE || p.startsWith(BASE))) return p;
+  if (!p.startsWith("/")) return p;
+  return `${BASE}${p.slice(1)}`;
+}
+
+/** Remove the serving base from a URL path (idempotent). */
+export function stripBase(pathname: string): string {
+  if (BASE === "/") return pathname;
+  if (pathname === BASE) return "/";
+  if (pathname.startsWith(BASE)) return pathname.slice(BASE.length - 1);
+  return pathname;
+}
 export const REPO = "https://github.com/PotenFYR-Studios/ojaj";
 export const MODRINTH = "https://modrinth.com/plugin/onejumpalljump";
 export const WEBSITE = "https://potenfyr.in";
@@ -171,7 +197,8 @@ export const PORTAL: PageMeta = {
 
 /** Page id from a URL path (accepts both /docs/x and /docs/x.html). */
 export function pageIdFromPath(pathname: string): string | null {
-  const p = pathname.replace(/\.html$/, "").replace(/\/$/, "") || "/";
+  const raw = stripBase(pathname);
+  const p = raw.replace(/\.html$/, "").replace(/\/$/, "") || "/";
   if (p === "/") return "home";
   if (p === "/about") return "about";
   if (p === "/examples") return "examples";

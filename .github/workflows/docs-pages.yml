@@ -27,6 +27,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -34,9 +37,21 @@ jobs:
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
 
+      - name: Configure GitHub Pages
+        id: pages
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        uses: actions/configure-pages@v6
+        with:
+          enablement: true
+
       - name: Build docs site
         working-directory: docs
         run: |
+          BASE_URL="${{ steps.pages.outputs.base_url }}"
+          case "$BASE_URL" in
+            ""|*github.io*) export VITE_BASE="/ojaj/" ;;
+            *) export VITE_BASE="/" ;;
+          esac
           bun install --frozen-lockfile
           bun run build
 
@@ -69,9 +84,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Setup Pages
-        uses: actions/configure-pages@v6
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5

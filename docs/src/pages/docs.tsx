@@ -1,4 +1,5 @@
 import { CodeBlock, ConfigTable } from "../components/bits";
+import { withBase } from "../site";
 
 const FULL_CONFIG = `# OneJumpAllJump: default config.yml (generated on first run)
 enabled: true            # master toggle
@@ -130,15 +131,15 @@ dash triggered a global jump!    <- broadcast`} />
       <h2 id="where-next">Where to next</h2>
       <ul>
         <li>
-          <a href="/docs/gameplay.html">Gameplay &amp; mechanics</a>: the exact trigger chain, launch
+          <a href={withBase("/docs/gameplay.html")}>Gameplay &amp; mechanics</a>: the exact trigger chain, launch
           math and safeguards.
         </li>
         <li>
-          <a href="/docs/configuration.html">Configuration</a>: every key in <code>config.yml</code>{" "}
+          <a href={withBase("/docs/configuration.html")}>Configuration</a>: every key in <code>config.yml</code>{" "}
           documented.
         </li>
         <li>
-          <a href="/docs/commands-permissions.html">Commands &amp; permissions</a>: everything{" "}
+          <a href={withBase("/docs/commands-permissions.html")}>Commands &amp; permissions</a>: everything{" "}
           <code>/onejump</code> can do.
         </li>
       </ul>
