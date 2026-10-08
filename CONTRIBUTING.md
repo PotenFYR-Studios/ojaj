@@ -42,13 +42,13 @@ bun run dev       # local dev server with hot reload (port 5175)
 ```
 
 Preview the production build with clean-URL support (extensionless routes like `/about` and
-`/examples` resolve to their `.html` files, matching the directory twins the build emits):
+`/examples` resolve to their `` files, matching the directory twins the build emits):
 
 ```bash
 python3 docs/dev-server.py 4180   # serves docs/dist/ at http://127.0.0.1:4180
 ```
 
-The site is a Vite multi-page app: every route (landing, `/docs/*`, `/about`) gets its own
+The site is a Vite multi-page app: every route (landing, `/*`, `/about`) gets its own
 static HTML shell with unique SEO meta. When adding a page:
 
 1. Add its metadata (route, title, description, TOC headings) to `docs/src/site.ts`
@@ -63,7 +63,7 @@ values.
 ## Issues
 
 Before opening an issue, please check the
-[FAQ](https://ojaj.docs.potenfyr.in/docs/faq.html), especially the world-name gotcha (default
+[FAQ](https:/docs.potenfyr.in/ojaj/faq), especially the world-name gotcha (default
 config only whitelists the worlds `world` and `spawn`). Use the issue templates:
 
 - **Bug report**: include server software + version, plugin version and steps to reproduce
