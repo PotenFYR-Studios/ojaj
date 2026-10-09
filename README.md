@@ -6,7 +6,7 @@
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&pause=1200&color=8B5CF6&center=true&vCenter=true&width=800&lines=One+jump.+Everybody+jumps.;Random+launch+power%2C+particles%2C+pure+chaos;Paper+and+Purpur.+Server-side+only.;Whitelist+your+worlds.+Blacklist+your+sanity.)](https://github.com/PotenFYR-Studios/ojaj)
 
 [![Modrinth](https://img.shields.io/badge/Modrinth-Download-1bd96a?style=for-the-badge&logo=modrinth&logoColor=white&labelColor=1c1e26)](https://modrinth.com/plugin/onejumpalljump)
-[![Docs](https://img.shields.io/badge/https:/docs.potenfyr.in/ojaj-8b5cf6?style=for-the-badge&logo=readme&logoColor=white&labelColor=1c1e26)](https:/docs.potenfyr.in/ojaj)
+[![Docs](https://img.shields.io/badge/https://docs.potenfyr.in/repo/ojaj?style=for-the-badge&logo=readme&logoColor=white&labelColor=1c1e26)](https://docs.potenfyr.in/repo/ojaj)
 [![License](https://img.shields.io/badge/License-Apache--2.0%20%2B%20Commons%20Clause-f97316?style=for-the-badge&logo=apache&logoColor=white&labelColor=1c1e26)](https://github.com/PotenFYR-Studios/ojaj/blob/master/LICENSE)
 [![GitHub repo](https://img.shields.io/badge/GitHub-PotenFYR--Studios%2Fojaj-181717?style=for-the-badge&logo=github&logoColor=white&labelColor=1c1e26)](https://github.com/PotenFYR-Studios/ojaj)
 [![View](https://komarev.com/ghpvc/?username=PotenFYR-Studios-ojaj&color=ec4899&style=for-the-badge&label=VIEW&labelColor=1c1e26)](https://github.com/PotenFYR-Studios/ojaj)
@@ -33,7 +33,7 @@
 3. Restart the server: a default `config.yml` is generated on first run
 4. Jump.
 
-Requires **Paper or Purpur** (the jump event is a Paper API; plain Spigot is not supported) for **Minecraft 26.1+**, Java 21+. Full guide: [Getting started](https:/docs.potenfyr.in/ojaj/getting-started).
+Requires **Paper or Purpur** (the jump event is a Paper API; plain Spigot is not supported) for **Minecraft 26.1+**, Java 21+. Full guide: [Getting started](https://docs.potenfyr.in/repo/ojaj/getting-started).
 
 ## 🕹️ Commands & permissions
 
@@ -72,17 +72,17 @@ worlds:
     - spawn
 ```
 
-📖 **Every key is documented** in the [Configuration reference](https:/docs.potenfyr.in/ojaj/configuration).
+📖 **Every key is documented** in the [Configuration reference](https://docs.potenfyr.in/repo/ojaj/configuration).
 
 ## 📚 Documentation
 
-Full documentation lives at **[https:/docs.potenfyr.in/ojaj](https:/docs.potenfyr.in/ojaj)**:
+Full documentation lives at **[https://docs.potenfyr.in/repo/ojaj](https://docs.potenfyr.in/repo/ojaj)**:
 
-- [Getting started](https:/docs.potenfyr.in/ojaj/getting-started): install and first launch
-- [Gameplay & mechanics](https:/docs.potenfyr.in/ojaj/gameplay): the exact trigger chain and launch math
-- [Configuration](https:/docs.potenfyr.in/ojaj/configuration): full `config.yml` reference
-- [Commands & permissions](https:/docs.potenfyr.in/ojaj/commands-permissions)
-- [FAQ](https:/docs.potenfyr.in/ojaj/faq)
+- [Getting started](https://docs.potenfyr.in/repo/ojaj/getting-started): install and first launch
+- [Gameplay & mechanics](https://docs.potenfyr.in/repo/ojaj/gameplay): the exact trigger chain and launch math
+- [Configuration](https://docs.potenfyr.in/repo/ojaj/configuration): full `config.yml` reference
+- [Commands & permissions](https://docs.potenfyr.in/repo/ojaj/commands-permissions)
+- [FAQ](https://docs.potenfyr.in/repo/ojaj/faq)
 
 ## 🤝 Contributing
 
